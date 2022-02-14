@@ -8,9 +8,12 @@ namespace Omnipay\SagePay\Message;
  */
  use Omnipay\Common\Exception\InvalidRequestException;
  use Omnipay\SagePay\Extend\Item as ExtendItem;
+use Omnipay\SagePay\Traits\GatewayParamsTrait;
 
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
+    use GatewayParamsTrait;
+
     /**
      * @var string The transaction type, used in the request body.
      */
