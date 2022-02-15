@@ -68,7 +68,7 @@ class SharedRepeatAuthorizeRequest extends AbstractRequest
         }
 
         // add v4 request fields
-        if ($this->getVpsProtocol() == '4.00'){
+        if ($this->getVPSProtocol() == '4.00'){
             $data['MITType'] = $this->getMITType();
             $data['COFUsage'] = $this->getCOFUsage();
             $data['InitiatedType'] = $this->getInitiatedType();

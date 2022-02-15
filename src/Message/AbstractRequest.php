@@ -130,12 +130,12 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected $liveEndpoint = 'https://live.sagepay.com/gateway/service';
     protected $testEndpoint = 'https://test.sagepay.com/gateway/service';
 
-    public function getVpsProtocol()
+    public function getVPSProtocol()
     {
         return $this->getParameter('VPSProtocol');
     }
 
-    public function setVpsProtocol($value)
+    public function setVPSProtocol($value)
     {
         return $this->setParameter('VPSProtocol', $value);
     }
@@ -351,7 +351,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         $data = array();
 
-        $data['VPSProtocol'] = $this->getVpsProtocol() ?: self::DEFAULT_VPS_PROTOCOL;
+        $data['VPSProtocol'] = $this->getVPSProtocol() ?: self::DEFAULT_VPS_PROTOCOL;
         $data['TxType'] = $this->getTxType();
         $data['Vendor'] = $this->getVendor();
         $data['AccountType'] = $this->getAccountType() ?: static::ACCOUNT_TYPE_E;
