@@ -28,6 +28,16 @@ class DirectGateway extends AbstractGateway
         );
     }
 
+    public function getVPSProtocol()
+    {
+        return $this->getParameter('VPSProtocol');
+    }
+
+    public function setVPSProtocol($value)
+    {
+        return $this->setParameter('VPSProtocol', $value);
+    }
+
     /**
      * Vendor identification.
      */
