@@ -3,6 +3,7 @@
 namespace Omnipay\SagePay;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\SagePay\Message\AbstractRequest;
 
 /**
  * Sage Pay Direct Gateway (API integration)
@@ -23,6 +24,7 @@ class DirectGateway extends AbstractGateway
             'vendor' => '',
             'testMode' => false,
             'referrerId' => '',
+            'VPSProtocol' => AbstractRequest::DEFAULT_VPS_PROTOCOL,
         );
     }
 
