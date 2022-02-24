@@ -54,7 +54,6 @@ trait GatewayParamsTrait {
         return $this->getParameter('BrowserJavaEnabled');
     }
 
-
     public function setBrowserColorDepth($value)
     {
         return $this->setParameter('BrowserColorDepth', $value);
