@@ -250,7 +250,7 @@ class Response extends AbstractResponse implements RedirectResponseInterface
             if (isset($this->data['CReq'])) {
                 // 3DSv2 (v4 sagepay protocol)
                 return [
-                    'creq' => $this->data['CReq'],
+                    'creq' => $this->data['CReq'], // inconsistent caps are intentional see https://www.opayo.co.uk/support/38/psd2-under-direct-integration
                     'threeDSSessionData' => $this->data['VPSTxId'],
                 ];
             } else {
