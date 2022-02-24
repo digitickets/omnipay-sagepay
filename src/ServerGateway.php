@@ -8,10 +8,11 @@ use Omnipay\SagePay\Message\ServerCompleteAuthorizeRequest;
 use Omnipay\SagePay\Message\ServerPurchaseRequest;
 
 /**
- * Sage Pay Server Gateway
+ * Sage Pay Server Gateway (Hosted/Redirect integration)
  */
 class ServerGateway extends DirectGateway
 {
+
     public function getName()
     {
         return 'Sage Pay Server';

@@ -8,9 +8,12 @@ namespace Omnipay\SagePay\Message;
  */
  use Omnipay\Common\Exception\InvalidRequestException;
  use Omnipay\SagePay\Extend\Item as ExtendItem;
+use Omnipay\SagePay\Traits\GatewayParamsTrait;
 
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
+    use GatewayParamsTrait;
+
     /**
      * @var string The transaction type, used in the request body.
      */
@@ -24,7 +27,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * @var string The protocol version number.
      */
-    protected $VPSProtocol = '3.00';
+    const DEFAULT_VPS_PROTOCOL = '3.00';
 
     /**
      * Supported 3D Secure values for Apply3DSecure.
@@ -94,10 +97,48 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     const ACCOUNT_TYPE_C = 'C';
 
     /**
+     * Flag whether customer's browser can run javascript.
+     */
+    const BROWSER_JAVASCRIPT_YES   = 1;
+    const BROWSER_JAVASCRIPT_NO    = 0;
+
+    /**
+     * Fallback browser language
+     */
+    const BROWSER_LANGUAGE = 'en-GB';
+
+    /**
+     * Dimensions of the challenge window to be displayed to the cardholder.
+     *
+     * 01 = 250 x 400
+     * 02 = 390 x 400
+     * 03 = 500 x 600
+     * 04 = 600 x 400
+     * 05 = Full screen
+     *
+     * @var string
+     */
+    const CHALLENGE_WINDOW_SIZE_01 = '01';
+    const CHALLENGE_WINDOW_SIZE_02 = '02';
+    const CHALLENGE_WINDOW_SIZE_03 = '03';
+    const CHALLENGE_WINDOW_SIZE_04 = '04';
+    const CHALLENGE_WINDOW_SIZE_05 = '05';
+
+    /**
      * @var string Endpoint base URLs.
      */
     protected $liveEndpoint = 'https://live.sagepay.com/gateway/service';
     protected $testEndpoint = 'https://test.sagepay.com/gateway/service';
+
+    public function getVPSProtocol()
+    {
+        return $this->getParameter('VPSProtocol');
+    }
+
+    public function setVPSProtocol($value)
+    {
+        return $this->setParameter('VPSProtocol', $value);
+    }
 
     /**
      * @return string The vendor name identified the account.
@@ -304,13 +345,13 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Basic authorisation, transaction type and protocol version.
      *
-     * @return Array
+     * @return array
      */
     protected function getBaseData()
     {
         $data = array();
 
-        $data['VPSProtocol'] = $this->VPSProtocol;
+        $data['VPSProtocol'] = $this->getVPSProtocol() ?: self::DEFAULT_VPS_PROTOCOL;
         $data['TxType'] = $this->getTxType();
         $data['Vendor'] = $this->getVendor();
         $data['AccountType'] = $this->getAccountType() ?: static::ACCOUNT_TYPE_E;
@@ -323,7 +364,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * then use that to instantiate the response object.
      *
      * @param  array
-     * @return Response The reponse object initialised with the data returned from the gateway.
+     * @return Response The response object initialised with the data returned from the gateway.
      */
     public function sendData($data)
     {
