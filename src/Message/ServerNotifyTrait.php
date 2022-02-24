@@ -88,7 +88,7 @@ trait ServerNotifyTrait
             );
 
             // new in v4
-            if ( $this->getDataItem('VPSProtocol') =='4.00'){
+            if ( $this->getDataItem('VPSProtocol') == '4.00'){
                 $signatureData = array_merge(
                     $signatureData,
                     array(
