@@ -86,7 +86,7 @@ class DirectGatewayTest extends GatewayTestCase
         $this->assertTrue($response->isRedirect());
         $this->assertSame('{"VendorTxCode":"123"}', $response->getTransactionReference());
         $this->assertNull($response->getMessage());
-        $this->assertSame('https://test.sagepay.com/Simulator/3DAuthPage.asp', $response->getRedirectUrl());
+        $this->assertSame('https://sandbox.opayo.eu.elavon.com/Simulator/3DAuthPage.asp', $response->getRedirectUrl());
 
         $redirectData = $response->getRedirectData();
         $this->assertSame('065379457749061954', $redirectData['MD']);
@@ -128,7 +128,7 @@ class DirectGatewayTest extends GatewayTestCase
         $this->assertTrue($response->isRedirect());
         $this->assertSame('{"VendorTxCode":"123"}', $response->getTransactionReference());
         $this->assertNull($response->getMessage());
-        $this->assertSame('https://test.sagepay.com/Simulator/3DAuthPage.asp', $response->getRedirectUrl());
+        $this->assertSame('https://sandbox.opayo.eu.elavon.com/Simulator/3DAuthPage.asp', $response->getRedirectUrl());
 
         $redirectData = $response->getRedirectData();
         $this->assertSame('065379457749061954', $redirectData['MD']);
